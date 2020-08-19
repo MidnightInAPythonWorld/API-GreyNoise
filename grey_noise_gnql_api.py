@@ -33,15 +33,12 @@ def query_grey_noise(api_key,api_params):
 
 def write_results_to_csv(api_data):
     api_results = []
-    for x in api_data['data']:
-#        print(x)
-        ip = x['ip']
-        classification=  x['classification'] 
-        actor =  x['actor']
-        tags = x['tags']
+    for item in api_data['data']:
+        ip = item['ip']
+        classification=  item['classification'] 
+        actor =  item['actor']
+        tags = item['tags']
         api_results.append([ip,classification,actor,tags])
-   # for y in api_results:
-   #     print(y)
     df = pd.DataFrame(api_results)
     # if file does not exist write header
     if not os.path.isfile('hash_results.csv'):
@@ -61,10 +58,7 @@ def main():
     api_params['query'] = args.api_query
     api_params['size'] = args.api_size
     api_data = query_grey_noise(api_key,api_params)
-    #print (api_data)
     write_results_to_csv(api_data)
-
-
 
 
 if __name__== "__main__":
@@ -72,4 +66,3 @@ if __name__== "__main__":
 
 
 exit()
-
