@@ -77,11 +77,10 @@ def write_results_to_csv(api_data,filename):
 def main():
     parser=argparse.ArgumentParser()
     parser.add_argument('api_key', help='The API key used to query Grey Noise API.')
-    #api_key = input("Please enter API Key: ")
     args=parser.parse_args()
     api_key = args.api_key
     api_params = {}
-    api_params['query'] = input("Enter your query string in GNQL format: ")
+    api_params['query'] = input("Enter query string in GNQL format: ")
     api_params['size'] = int(input("Enter Size (max is 10000): "))
     filename = input("Enter filename to write results to: ")
     api_data = query_grey_noise(api_key,api_params)
