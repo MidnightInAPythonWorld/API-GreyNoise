@@ -44,8 +44,13 @@ def query_grey_noise(api_key,api_params):
     api_headers['Connection'] = 'Keep-Alive'
     api_headers['key'] = api_key
     url = 'https://api.greynoise.io/v2/experimental/gnql'
-    api_requests = requests.get(url, headers = api_headers, params=api_params, timeout=15.000, verify=True)
-    api_json = api_requests.json()
+    try:
+        print('[*] Attempting GreyNoise API request for query: ' , api_params['query'] )
+        api_requests = requests.get(url, headers = api_headers, params=api_params, timeout=15.000, verify=True)
+        api_json = api_requests.json()
+        print('[*] Successfully queried GreyNoise API.')
+    except:
+        print("[!] Failed to fetch GreyNoise API with base URL of: ", url)
     return api_json
 
 
@@ -54,13 +59,6 @@ def write_results_to_csv(api_data):
         Function only extracts a few fields from the JSON object.
         Function is using Pandas as a quick way to write to CSV.
     '''
-    api_results = []
-    for item in api_data['data']:
-        ip = item['ip']
-        classification=  item['classification'] 
-        actor =  item['actor']
-        tags = item['tags']
-        api_results.append([ip,classification,actor,tags])
     df = pd.DataFrame(api_data['data'])
     # if file does not exist write header
     if not os.path.isfile('api_results.csv'):
