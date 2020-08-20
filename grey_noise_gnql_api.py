@@ -61,7 +61,7 @@ def write_results_to_csv(api_data):
         actor =  item['actor']
         tags = item['tags']
         api_results.append([ip,classification,actor,tags])
-    df = pd.DataFrame(api_results)
+    df = pd.DataFrame(api_data['data'])
     # if file does not exist write header
     if not os.path.isfile('api_results.csv'):
         df.to_csv('api_results.csv')
