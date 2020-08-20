@@ -9,15 +9,22 @@ if sys.version_info[0] != 3:
     exit()
 
 # stdlib
-import json,os,pprint,requests,argparse
-import pandas as pd
+import json,os,requests,argparse
+
+# Check for Pandas
+try:
+    import pandas as pd
+except:
+    print("[-] This script requires Pandas to be installed.")
+    print("[-] Exiting script")
+    exit()
 
 
 def query_grey_noise(api_key,api_params):
     """ 
     This function will accept API Key and Params from user input.
     Documentation for this API are located here: https://docs.greynoise.io/#greynoise-api-gnql
-    The Query is for the Grey Noise Query Language (GNQL).
+    This script is for the Grey Noise Query Language (GNQL).
     
     Parameters
     ----------
