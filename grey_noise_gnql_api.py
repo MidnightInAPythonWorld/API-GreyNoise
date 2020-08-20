@@ -22,26 +22,8 @@ except:
 
 def query_grey_noise(api_key,api_params):
     """ 
-    This function will accept API Key and Params from user input.
+    This function will accept API Key (provided via argpaser) and Params from user input.
     Documentation for this API are located here: https://docs.greynoise.io/#greynoise-api-gnql
-    This script is for the Grey Noise Query Language (GNQL).
-    
-    Parameters
-    ----------
-    api_key : string
-        API key provided by user input captured in Main function.
-    api_params : dict
-        API parameters provided by user input captured in Main function.
-
-    Returns
-    -------
-    api_json
-        API data in JSON object.
-
-    See Also
-    --------
-    main() : main function provides api_key and api_params used in this function
-
     """
     api_headers = {}
     api_headers['Accept'] = 'application/json'

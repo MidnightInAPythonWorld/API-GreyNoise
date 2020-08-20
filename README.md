@@ -1,5 +1,7 @@
 # Grey-Noise-API
 
+This script is used for querying the GreyNoise API using the GreyNoise Query Language (GNQL).
+ 
 To run this Grey Noise API script, perform the following:
 
     python3 grey_noise_gnql_api.py 'your_api_key'
