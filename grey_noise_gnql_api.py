@@ -41,7 +41,7 @@ def write_results_to_csv(api_data):
         api_results.append([ip,classification,actor,tags])
     df = pd.DataFrame(api_results)
     # if file does not exist write header
-    if not os.path.isfile('hash_results.csv'):
+    if not os.path.isfile('api_results.csv'):
         df.to_csv('api_results.csv')
     else: # else it exists so append without writing the header
         df.to_csv('api_results.csv', mode='a', header=False)
@@ -63,6 +63,5 @@ def main():
 
 if __name__== "__main__":
   main()
-
 
 exit()
