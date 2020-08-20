@@ -1,6 +1,6 @@
 # Grey-Noise-API
 
-To Run Grey Noise API script:
+To run Grey Noise API script:
 
     python3 grey_noise_gnql_api.py 'your_api_key'
     
