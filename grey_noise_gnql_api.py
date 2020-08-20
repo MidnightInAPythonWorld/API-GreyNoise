@@ -73,6 +73,7 @@ def write_results_to_csv(api_data,filename):
         df.to_csv(filename, mode='a', header=False)
     print('[*] Successfully created file: ', filename) 
 
+
 def main():
     parser=argparse.ArgumentParser()
     parser.add_argument('api_key', help='The API key used to query Grey Noise API.')
@@ -85,7 +86,6 @@ def main():
     filename = input("Enter filename to write results to: ")
     api_data = query_grey_noise(api_key,api_params)
     write_results_to_csv(api_data,filename)
-
 
 if __name__== "__main__":
   main()
