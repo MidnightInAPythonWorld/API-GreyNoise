@@ -40,13 +40,18 @@ def query_grey_noise(api_key,api_params):
         print('[*] Successfully queried GreyNoise API.')
     except:
         print("[!] Failed to fetch GreyNoise API with base URL of: ", url)
-    return api_json
+    if api_json['count'] >=1:
+        return api_json
+    else:
+        return None
 
 
 def write_results_to_csv(api_data,filename):
     ''' This function will parse the data that is returned from API.
         Function is using Pandas as a quick way to write to CSV.
     '''
+    for item in api_data['data']:
+        del item['raw_data']
     df = pd.DataFrame(api_data['data'])
     # if file does not exist write header
     if not os.path.isfile(filename):
@@ -66,7 +71,11 @@ def main():
     api_params['size'] = int(input("Enter Size (max is 10000): "))
     filename = input("Enter filename to write results to: ")
     api_data = query_grey_noise(api_key,api_params)
-    write_results_to_csv(api_data,filename)
+    if api_data:
+        print("[!] Search had " + str(api_data['count']) + " matches.")
+        write_results_to_csv(api_data,filename)
+    else:
+        print("[!] Search had 0 matches.")
 
 if __name__== "__main__":
   main()
