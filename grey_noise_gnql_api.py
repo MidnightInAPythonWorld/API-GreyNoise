@@ -55,8 +55,7 @@ def query_grey_noise(api_key,api_params):
 
 
 def write_results_to_csv(api_data):
-    ''' This function will parse the API Data that is returned.
-        Function only extracts a few fields from the JSON object.
+    ''' This function will parse the data that is returned from API.
         Function is using Pandas as a quick way to write to CSV.
     '''
     df = pd.DataFrame(api_data['data'])
