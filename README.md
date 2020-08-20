@@ -9,3 +9,8 @@ The following prompts will appear asking for user input:
     Enter your query string in GNQL format: metadata.organization:Microsoft classification:malicious
     Enter Size (max is 10000): 10
     Enter filename to write results to: new.csv
+
+
+More query examples can be found here:
+https://docs.greynoise.io/#greynoise-api-gnql
+
