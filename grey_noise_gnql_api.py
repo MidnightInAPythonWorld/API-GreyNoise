@@ -12,12 +12,30 @@ if sys.version_info[0] != 3:
 import json,os,pprint,requests,argparse
 import pandas as pd
 
-# Silence HTTPS errors
-import urllib3
-urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-
 
 def query_grey_noise(api_key,api_params):
+    """ 
+    This function will accept API Key and Params from user input.
+    Documentation for this API are located here: https://docs.greynoise.io/#greynoise-api-gnql
+    The Query is for the Grey Noise Query Language (GNQL).
+    
+    Parameters
+    ----------
+    api_key : string
+        API key provided by user input captured in Main function.
+    api_params : dict
+        API parameters provided by user input captured in Main function.
+
+    Returns
+    -------
+    api_json
+        API data in JSON object.
+
+    See Also
+    --------
+    main() : main function provides api_key and api_params used in this function
+
+    """
     api_headers = {}
     api_headers['Accept'] = 'application/json'
     api_headers['Accept-Language'] = 'en-US'
@@ -32,6 +50,10 @@ def query_grey_noise(api_key,api_params):
 
 
 def write_results_to_csv(api_data):
+    ''' This function will parse the API Data that is returned.
+        Function only extracts a few fields from the JSON object.
+        Function is using Pandas as a quick way to write to CSV.
+    '''
     api_results = []
     for item in api_data['data']:
         ip = item['ip']
