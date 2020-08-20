@@ -61,30 +61,30 @@ def query_grey_noise(api_key,api_params):
     return api_json
 
 
-def write_results_to_csv(api_data):
+def write_results_to_csv(api_data,filename):
     ''' This function will parse the data that is returned from API.
         Function is using Pandas as a quick way to write to CSV.
     '''
     df = pd.DataFrame(api_data['data'])
     # if file does not exist write header
-    if not os.path.isfile('api_results.csv'):
-        df.to_csv('api_results.csv')
+    if not os.path.isfile(filename):
+        df.to_csv(filename)
     else: # else it exists so append without writing the header
-        df.to_csv('api_results.csv', mode='a', header=False)
-
+        df.to_csv(filename, mode='a', header=False)
+    print('[*] Successfully created file: ', filename) 
 
 def main():
     parser=argparse.ArgumentParser()
     parser.add_argument('api_key', help='The API key used to query Grey Noise API.')
-    parser.add_argument('api_query', help='The Query used to query Grey Noise API.')
-    parser.add_argument('api_size', help='Size of the results returned by Grey Noise API.')
+    #api_key = input("Please enter API Key: ")
     args=parser.parse_args()
     api_key = args.api_key
     api_params = {}
-    api_params['query'] = args.api_query
-    api_params['size'] = args.api_size
+    api_params['query'] = input("Enter your query string in GNQL format: ")
+    api_params['size'] = int(input("Enter Size (max is 10000): "))
+    filename = input("Enter filename to write results to: ")
     api_data = query_grey_noise(api_key,api_params)
-    write_results_to_csv(api_data)
+    write_results_to_csv(api_data,filename)
 
 
 if __name__== "__main__":
