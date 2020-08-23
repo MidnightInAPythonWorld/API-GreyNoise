@@ -25,13 +25,14 @@ def query_grey_noise(api_key,api_params):
     This function will accept API Key (provided via argpaser) and Params from user input.
     Documentation for this API are located here: https://docs.greynoise.io/#greynoise-api-gnql
     """
-    api_headers = {}
-    api_headers['Accept'] = 'application/json'
-    api_headers['Accept-Language'] = 'en-US'
-    api_headers['User-Agent'] = 'Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko'
-    api_headers['Accept-Encoding'] = 'gzip, deflate'
-    api_headers['Connection'] = 'Keep-Alive'
-    api_headers['key'] = api_key
+    api_headers = {
+            'Accept' : 'application/json' ,
+            'Accept-Language' : 'en-US' ,
+            'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko' ,
+            'Accept-Encoding' : 'gzip, deflate' ,
+            'Connection' : 'Keep-Alive' ,
+            'key' : api_key ,
+            }
     url = 'https://api.greynoise.io/v2/experimental/gnql'
     try:
         print('[*] Attempting GreyNoise API request for query: ' , api_params['query'] )
